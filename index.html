@@ -79,23 +79,13 @@ quotes=[
 "Being good to people is a wonderful legacy to leave behind.",
 ];
 
-const INTERVAL = 864000;
-
-function dispalyQuote(){
-
-    document.getElementById('widget').innerHTML =quotes[0];
-    quotes.forEach((quote, i) => {
-        setTimeout(() => {
-            document.getElementById('widget').innerHTML =quote;
-        }, i * INTERVAL);  
-    });
-    }
-
-    function dispalyWidget() {
-        dispalyQuote();
-        setTimeout(dispalyWidget, quotes.length*INTERVAL);
-    }
-    dispalyWidget()
+const INTERVAL = 5000;
+function displayWidget() {
+    const index = Math.floor(Math.random() * quotes.length);
+    document.getElementById('widget').innerHTML = quotes[index];
+    setTimeout(displayWidget, INTERVAL);
+}
+displayWidget()
 
 </script>
 
