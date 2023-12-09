@@ -16,26 +16,9 @@
             margin: auto;
             font-variant-caps: petite-caps;
             font-size: 2em;
-
+            border: 2px solid black;
+            border-radius: 50%;
         }
-
-        div {
-             width: 95%;
-             min-height: 100px;
-
-            background:
-                linear-gradient(to right, black 4px, transparent 4px) 0 0,
-                linear-gradient(to right, black 4px, transparent 4px) 0 100%,
-                linear-gradient(to left, black 4px, transparent 4px) 100% 0,
-                linear-gradient(to left, black 4px, transparent 4px) 100% 100%,
-                linear-gradient(to bottom, black 4px, transparent 4px) 0 0,
-                linear-gradient(to bottom, black 4px, transparent 4px) 100% 0,
-                linear-gradient(to top, black 4px, transparent 4px) 0 100%,
-                linear-gradient(to top, black 4px, transparent 4px) 100% 100%;
-
-            background-repeat: no-repeat;
-            background-size: 20px 20px;
-}
 
      
     </style>
@@ -79,10 +62,17 @@ quotes=[
 "Being good to people is a wonderful legacy to leave behind.",
 ];
 
+usedList = []
+
 const INTERVAL = 3600000;
 function displayWidget() {
+    if (quotes.length == 0) {
+        quotes = usedList
+    }
     const index = Math.floor(Math.random() * quotes.length);
-    document.getElementById('widget').innerHTML = quotes[index];
+    const quote = quotes.splice(index, 1);
+    usedList.push(quote)
+    document.getElementById('widget').innerHTML = quote;
     setTimeout(displayWidget, INTERVAL);
 }
 displayWidget()
